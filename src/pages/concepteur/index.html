@@ -1,0 +1,256 @@
+vvv<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plateforme Concepteur | Osez-Innover</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bordeaux: #580F45;
+            --orange: #F48C2E;
+            --teal: #2EAF7D;
+            --blue: #2A325E;
+            --bg-page: #F0F2F5;
+            --bg-card: #FFFFFF;
+        }
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--blue);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .top-nav {
+            background: var(--bg-card);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: var(--bordeaux);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .sections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .section-card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+        }
+        .icon-projets { background: var(--bordeaux); }
+        .icon-ressources { background: var(--teal); }
+        .icon-outils { background: var(--orange); }
+        .section-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            color: var(--blue);
+            margin-bottom: 0.8rem;
+        }
+        .card-footer {
+            padding: 1rem 1.5rem;
+            background: rgba(0, 0, 0, 0.03);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .status-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: rgba(46, 175, 125, 0.1);
+            color: var(--teal);
+        }
+        .action-link {
+            color: var(--bordeaux);
+            font-weight: 600;
+        }
+        .tools-section {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .tool-card {
+            background: rgba(244, 140, 46, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .tool-icon {
+            font-size: 2rem;
+            color: var(--orange);
+            margin-bottom: 1rem;
+        }
+        @media (max-width: 768px) {
+            .sections-grid {
+                grid-template-columns: 1fr;
+            }
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="logo">
+            <i class="fa-solid fa-pen-ruler" style="color: var(--orange);"></i>
+            OSEZ-INNOVER
+            <span style="font-size: 0.8rem; margin-left: 0.5rem; opacity: 0.7;">| Concepteur</span>
+        </div>
+        <div class="nav-right">
+            <a href="../../index.html" style="color: var(--blue); text-decoration: none; font-weight: 600;">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Quitter
+            </a>
+        </div>
+    </nav>
+
+    <header style="background: linear-gradient(135deg, var(--bordeaux), var(--blue)); color: white; padding: 3rem 1rem; text-align: center;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h1 style="font-family: 'Montserrat', sans-serif; font-size: 2.5rem; margin-bottom: 0.5rem;">Plateforme Concepteur</h1>
+            <p style="font-size: 1.1rem; opacity: 0.9;">Gérez vos projets pédagogiques, ressources et outils techniques pour créer des modules innovants.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="sections-grid">
+            <a href="projets.html" class="section-card">
+                <div class="card-header">
+                    <div class="card-icon icon-projets"><i class="fa-solid fa-diagram-project"></i></div>
+                    <h3>Gestion des Projets</h3>
+                    <p>Créez, modifiez et suivez l'avancement de vos modules pédagogiques.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="status-badge">Actif</span>
+                    <div class="action-link">
+                        Accéder <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+            </a>
+
+            <a href="ressources.html" class="section-card">
+                <div class="card-header">
+                    <div class="card-icon icon-ressources"><i class="fa-solid fa-book"></i></div>
+                    <h3>Ressources Pédagogiques</h3>
+                    <p>Accédez aux fiches, templates et exemples pour vos modules.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="status-badge">Actif</span>
+                    <div class="action-link">
+                        Explorer <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+            </a>
+
+            <div class="section-card">
+                <div class="card-header">
+                    <div class="card-icon icon-outils"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                    <h3>Outils Techniques</h3>
+                    <p>Intégrations avec Directus, Docker et autres outils.</p>
+                </div>
+                <div class="card-footer">
+                    <span class="status-badge">Actif</span>
+                    <div class="action-link">
+                        <i class="fa-solid fa-gear"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tools-section">
+            <h2 style="font-family: 'Montserrat', sans-serif; color: var(--bordeaux); margin-bottom: 1rem;">
+                <i class="fa-solid fa-toolbox" style="margin-right: 0.5rem; color: var(--orange);"></i>
+                Outils Intégrés
+            </h2>
+            <p style="color: var(--blue); margin-bottom: 1.5rem; opacity: 0.8;">
+                Accédez rapidement aux outils techniques pour gérer vos contenus et déploiements.
+            </p>
+
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon"><i class="fa-solid fa-database"></i></div>
+                    <h4>Directus CMS</h4>
+                    <p>Gérez vos contenus pédagogiques (modules, quiz, ressources).</p>
+                    <a href="https://212.47.247.119.nip.io" target="_blank" style="color: var(--bordeaux); font-weight: 600;">
+                        Accéder <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon"><i class="fa-brands fa-docker"></i></div>
+                    <h4>Docker</h4>
+                    <p>Déployez vos environnements de développement et production.</p>
+                    <a href="#" style="color: var(--bordeaux); font-weight: 600;">
+                        Documentation <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+
+                <div class="tool-card">
+                    <div class="tool-icon"><i class="fa-brands fa-github"></i></div>
+                    <h4>GitHub</h4>
+                    <p>Versionnez et collaborez sur vos projets.</p>
+                    <a href="https://github.com/votre-compte/osez-innover-v2" target="_blank" style="color: var(--bordeaux); font-weight: 600;">
+                        Voir le dépôt <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
