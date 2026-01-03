@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MODULE 1 : Vocabulaire & Typologie | Projet Inno</title>
+    
+    <!-- Polices & Icônes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- 1. DESIGN TOKENS (Identiques au reste du site) --- */
+        :root {
+            --bordeaux: #580F45; 
+            --orange: #F48C2E;
+            --teal: #2EAF7D;
+            --blue: #2A325E;
+            --bg-page: #F0F2F5;
+            --bg-card: #FFFFFF;
+            --text-main: #2A325E;
+            --text-light: #6c757d;
+        }
+
+        body.dark-mode {
+            --bg-page: #1A1D2E;
+            --bg-card: #232742;
+            --text-main: #EAEAEA;
+            --text-light: #A0A0A0;
+        }
+
+        * { box-sizing: border-box; transition: all 0.3s ease; }
+        
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            background-image: radial-gradient(rgba(88, 15, 69, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            padding-bottom: 80px;
+        }
+        body.dark-mode { background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px); }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- 2. NAVIGATION & HUD --- */
+        .gamification-bar {
+            background: var(--bg-card);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-bottom: 3px solid var(--bordeaux); /* Couleur du Module 1 */
+        }
+        
+        .breadcrumb-mini { font-size: 0.8rem; opacity: 0.7; margin-bottom: 5px; }
+        .module-header-title { font-weight: 900; color: var(--bordeaux); font-size: 1.2rem; }
+        body.dark-mode .module-header-title { color: var(--orange); }
+
+        .hud-actions { display: flex; gap: 1rem; align-items: center; }
+        .btn-icon {
+            background: rgba(0,0,0,0.05); border: none; width: 40px; height: 40px; border-radius: 50%;
+            cursor: pointer; color: var(--text-main); display: flex; align-items: center; justify-content: center;
+        }
+        .btn-icon:hover { background: var(--bordeaux); color: white; }
+
+        /* --- 3. CONTENU PRINCIPAL --- */
+        .container { max-width: 800px; margin: 3rem auto; padding: 0 1rem; }
+
+        .intro-card {
+            background: linear-gradient(135deg, var(--bordeaux), #2c0521);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(88, 15, 69, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Motif décoratif */
+        .intro-card::after {
+            content: '\f0eb'; /* Icone ampoule */
+            font-family: "Font Awesome 6 Free"; font-weight: 900;
+            position: absolute; right: -20px; bottom: -40px;
+            font-size: 10rem; opacity: 0.1; color: white;
+            transform: rotate(-20deg);
+        }
+
+        .intro-title { font-size: 2rem; margin: 0 0 1rem 0; }
+        .intro-desc { font-size: 1rem; line-height: 1.6; opacity: 0.9; max-width: 80%; }
+
+        /* --- 4. LISTE DES SÉQUENCES --- */
+        .sequence-block { margin-bottom: 2.5rem; }
+        
+        .sequence-header {
+            display: flex; align-items: center; gap: 15px; margin-bottom: 1.5rem;
+        }
+        .seq-badge {
+            background: var(--orange); color: white; font-weight: 800;
+            padding: 5px 12px; border-radius: 8px; font-size: 0.8rem; text-transform: uppercase;
+        }
+        .seq-title { font-size: 1.3rem; font-weight: 700; margin: 0; color: var(--blue); }
+        body.dark-mode .seq-title { color: white; }
+
+        /* --- 5. CAPSULES (GRAINS) --- */
+        .capsule-list { display: flex; flex-direction: column; gap: 1rem; }
+
+        .capsule-item {
+            background: var(--bg-card);
+            padding: 1.2rem;
+            border-radius: 12px;
+            display: flex; align-items: center; gap: 1.5rem;
+            cursor: pointer;
+            border-left: 4px solid transparent;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            position: relative;
+        }
+
+        .capsule-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left-color: var(--bordeaux);
+        }
+
+        /* Statut de la capsule */
+        .capsule-status {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(0,0,0,0.05); color: #ccc;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; flex-shrink: 0;
+        }
+        
+        .capsule-info { flex: 1; }
+        .capsule-title { font-weight: 700; margin: 0 0 5px 0; font-size: 1rem; }
+        .capsule-meta { font-size: 0.8rem; color: var(--text-light); display: flex; gap: 10px; }
+        
+        /* Modificateurs d'état */
+        .status-done .capsule-status { background: var(--teal); color: white; }
+        .status-active .capsule-status { background: white; border: 2px solid var(--orange); color: var(--orange); }
+        .status-lock .capsule-status { background: transparent; border: 1px dashed #ccc; opacity: 0.5; }
+        .status-lock { opacity: 0.6; cursor: not-allowed; pointer-events: none; }
+
+        /* Icone Play */
+        .play-btn {
+            opacity: 0; color: var(--bordeaux); transition: 0.2s;
+        }
+        .capsule-item:hover .play-btn { opacity: 1; transform: translateX(-5px); }
+
+        @media (max-width: 600px) {
+            .intro-title { font-size: 1.5rem; }
+            .capsule-item { padding: 1rem; gap: 1rem; }
+            .capsule-status { width: 30px; height: 30px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV BARRE -->
+    <nav class="gamification-bar">
+        <div>
+            <div class="breadcrumb-mini">Sensibilisation > Module 1</div>
+            <div class="module-header-title">Vocabulaire & Typologie</div>
+        </div>
+
+        <div class="hud-actions">
+            <button class="btn-icon" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></button>
+            <a href="portal_sensi.html" class="btn-icon" title="Retour au Parcours"><i class="fa-solid fa-arrow-left"></i></a>
+        </div>
+    </nav>
+
+    <!-- CONTENU -->
+    <div class="container">
+        
+        <!-- HERO DU MODULE -->
+        <div class="intro-card">
+            <h1 class="intro-title">Maitriser le Langage</h1>
+            <p class="intro-desc">
+                Avant de vouloir changer le monde, il faut comprendre les mots pour le décrire. 
+                Dans ce module, nous allons déconstruire les mythes de l'innovation et poser des bases solides.
+            </p>
+            <div style="margin-top: 20px; font-weight: bold; font-size: 0.9rem;">
+                <i class="fa-solid fa-clock"></i> Temps estimé : 45 min &nbsp;|&nbsp; 
+                <i class="fa-solid fa-trophy"></i> Gain : +150 XP
+            </div>
+        </div>
+
+        <!-- SÉQUENCE 1 -->
+        <div class="sequence-block">
+            <div class="sequence-header">
+                <span class="seq-badge">Séquence 1</span>
+                <h2 class="seq-title">Les Fondamentaux</h2>
+            </div>
+            <div class="capsule-list">
+                <!-- Capsule 1 (Active) -->
+                <div class="capsule-item status-active" onclick="openCapsule('intro')">
+                    <div class="capsule-status"><i class="fa-solid fa-play"></i></div>
+                    <div class="capsule-info">
+                        <h3 class="capsule-title">Qu'est-ce que l'Innovation ?</h3>
+                        <div class="capsule-meta"><i class="fa-regular fa-clock"></i> 3 min • Introduction</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right play-btn"></i>
+                </div>
+
+                <!-- Capsule 2 -->
+                <div class="capsule-item" onclick="openCapsule('invention')">
+                    <div class="capsule-status"><i class="fa-solid fa-lock"></i></div>
+                    <div class="capsule-info">
+                        <h3 class="capsule-title">Invention vs Innovation vs Entrepreneuriat</h3>
+                        <div class="capsule-meta"><i class="fa-regular fa-clock"></i> 4 min • Distinction clé</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right play-btn"></i>
+                </div>
+
+                <!-- Capsule 3 -->
+                <div class="capsule-item" onclick="openCapsule('vocabulaire')">
+                    <div class="capsule-status"><i class="fa-solid fa-lock"></i></div>
+                    <div class="capsule-info">
+                        <h3 class="capsule-title">Le Nuage de Vocabulaire</h3>
+                        <div class="capsule-meta"><i class="fa-regular fa-clock"></i> 2 min • Lexique</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right play-btn"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- SÉQUENCE 2 -->
+        <div class="sequence-block">
+            <div class="sequence-header">
+                <span class="seq-badge">Séquence 2</span>
+                <h2 class="seq-title">Typologies & Stratégies</h2>
+            </div>
+            <div class="capsule-list">
+                <div class="capsule-item status-lock">
+                    <div class="capsule-status"><i class="fa-solid fa-lock"></i></div>
+                    <div class="capsule-info">
+                        <h3 class="capsule-title">Les 4 Familles d'Innovation</h3>
+                        <div class="capsule-meta">Rupture, Incrémentale, Adjacente...</div>
+                    </div>
+                </div>
+                <div class="capsule-item status-lock">
+                    <div class="capsule-status"><i class="fa-solid fa-lock"></i></div>
+                    <div class="capsule-info">
+                        <h3 class="capsule-title">Les 3 Stratégies</h3>
+                        <div class="capsule-meta">Market Pull, Tech Push, Need Seekers</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SÉQUENCE 3 -->
+        <div class="sequence-block">
+            <div class="sequence-header">
+                <span class="seq-badge">Séquence 3</span>
+                <h2 class="seq-title">Le Processus</h2>
+            </div>
+            <div class="capsule-list">
+                <div class="capsule-item status-lock">
+                    <div class="capsule-status"><i class="fa-solid fa-lock"></i></div>
+                    <div class="capsule-info">
+                        <h3 class="capsule-title">L'Innovation est un Processus</h3>
+                        <div class="capsule-meta">Ce n'est pas juste une idée magique</div>
+                    </div>
+                </div>
+                <div class="capsule-item status-lock">
+                    <div class="capsule-status"><i class="fa-solid fa-lock"></i></div>
+                    <div class="capsule-info">
+                        <h3 class="capsule-title">Besoin de Méthodes</h3>
+                        <div class="capsule-meta">Structurer le chaos</div>
+                    </div>
+                </div>
+                <div class="capsule-item status-lock">
+                    <div class="capsule-status"><i class="fa-solid fa-lock"></i></div>
+                    <div class="capsule-info">
+                        <h3 class="capsule-title">Design Thinking & Triple Diamant</h3>
+                        <div class="capsule-meta">Les standards de l'industrie</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SÉQUENCE 4 -->
+        <div class="sequence-block">
+            <div class="sequence-header">
+                <span class="seq-badge">Séquence 4</span>
+                <h2 class="seq-title">Posture & Impact</h2>
+            </div>
+            <div class="capsule-list">
+                <div class="capsule-item status-lock">
+                    <div class="capsule-status"><i class="fa-solid fa-lock"></i></div>
+                    <div class="capsule-info">
+                        <h3 class="capsule-title">Problème vs Solution</h3>
+                        <div class="capsule-meta">Le piège classique</div>
+                    </div>
+                </div>
+                <div class="capsule-item status-lock">
+                    <div class="capsule-status"><i class="fa-solid fa-lock"></i></div>
+                    <div class="capsule-info">
+                        <h3 class="capsule-title">Dimensionner l'Impact</h3>
+                        <div class="capsule-meta">Valeur ajoutée et utilité</div>
+                    </div>
+                </div>
+                <div class="capsule-item status-lock">
+                    <div class="capsule-status"><i class="fa-solid fa-lock"></i></div>
+                    <div class="capsule-info">
+                        <h3 class="capsule-title">Personas & Prochaines Étapes</h3>
+                        <div class="capsule-meta">Vers qui se tourner ?</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+        // Gestion du Mode Nuit (Identique aux autres pages)
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            
+            const btnIcon = document.querySelector('.hud-actions button i');
+            if(isDark) {
+                btnIcon.classList.remove('fa-moon');
+                btnIcon.classList.add('fa-sun');
+            } else {
+                btnIcon.classList.remove('fa-sun');
+                btnIcon.classList.add('fa-moon');
+            }
+        }
+
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                toggleTheme(); // Active le mode dark si sauvegardé
+            }
+        };
+
+        // Navigation vers les Capsules
+        function openCapsule(id) {
+            // Pour l'instant, on simule l'ouverture
+            if(id === 'intro') {
+                // Créer le fichier content/m1_c1_intro.html plus tard
+                alert("Ouverture de la Capsule : Qu'est-ce que l'Innovation ?\n(Page de contenu à créer)");
+            } else {
+                alert("Cette capsule est verrouillée. Terminez la précédente pour avancer !");
+            }
+        }
+    </script>
+</body>
+</html>
