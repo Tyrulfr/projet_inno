@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- 1. CONFIGURATION DES COULEURS (A mettre dans css/style.css plus tard) --- */
+        /* --- 1. CONFIGURATION --- */
         :root {
             --bordeaux: #580F45;
             --orange: #F48C2E;
@@ -96,7 +96,7 @@
         }
         .theme-btn:hover { background: var(--orange); color: white; }
 
-        /* --- 4. FIL D'ARIANE (BREADCRUMB) - NOUVEAU --- */
+        /* --- 4. FIL D'ARIANE --- */
         .breadcrumb {
             padding: 1rem 5%;
             font-size: 0.9rem;
@@ -149,7 +149,7 @@
             border: 1px solid #eee;
             border-radius: 15px;
             padding: 2rem;
-            width: 300px; /* Taille fixe pour uniformité */
+            width: 300px;
             text-align: center;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
             cursor: pointer;
@@ -172,7 +172,7 @@
             border-color: var(--orange); 
         }
 
-        /* Décoration visuelle dans la carte */
+        /* Décoration visuelle */
         .card::before {
             content: '';
             position: absolute;
@@ -238,7 +238,6 @@
 
     <!-- NAVIGATION -->
     <nav class="navbar">
-        <!-- Le logo redirige vers l'accueil (index.html) -->
         <div class="logo" onclick="window.location.href='../../index.html'">
             <i class="fa-solid fa-atom" style="color: var(--orange);"></i>
             PROJET INNO
@@ -261,22 +260,21 @@
 
         <div class="cards-container">
             <!-- CARTE 1 : MODULES DE COURS -->
-            <!-- Redirige vers la liste des modules (cours.html) -->
-            <div class="card modules" onclick="window.location.href='cours.html'">
+            <!-- MISE A JOUR : Lien vers le nouveau dossier 'sensibilise' -->
+            <div class="card modules" onclick="window.location.href='sensibilise/portal_sensi.html'">
                 <div>
                     <div class="icon-circle">
                         <i class="fa-solid fa-layer-group"></i>
                     </div>
-                    <h3>Mes Modules</h3>
-                    <p>Accédez aux 6 modules de formation, suivez votre progression et validez vos acquis.</p>
+                    <h3>Sensibilisation</h3>
+                    <p>Découvrez notre parcours de 6 modules pour comprendre les bases de l'innovation.</p>
                 </div>
                 <div>
-                    <span class="btn-card">Accéder aux cours</span>
+                    <span class="btn-card">Accéder au parcours</span>
                 </div>
             </div>
 
             <!-- CARTE 2 : GAZETTE (Ressources) -->
-            <!-- Redirige vers la gazette (gazette.html) -->
             <div class="card gazette" onclick="window.location.href='gazette.html'">
                 <div>
                     <div class="icon-circle">
@@ -297,14 +295,12 @@
         &copy; 2026 Projet Inno - Espace Formation
     </footer>
 
-    <!-- SCRIPT JS (A externaliser dans js/main.js plus tard) -->
+    <!-- SCRIPT JS -->
     <script>
-        // Fonction pour gérer le mode sombre et le sauvegarder
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
             const btn = document.querySelector('.theme-btn');
             
-            // Sauvegarde de la préférence dans le navigateur
             if(document.body.classList.contains('dark-mode')) {
                 btn.innerHTML = '<i class="fa-solid fa-sun"></i> Mode Jour';
                 localStorage.setItem('theme', 'dark');
@@ -314,7 +310,6 @@
             }
         }
 
-        // Vérification de la préférence au chargement de la page
         window.onload = function() {
             const savedTheme = localStorage.getItem('theme');
             if(savedTheme === 'dark') {
